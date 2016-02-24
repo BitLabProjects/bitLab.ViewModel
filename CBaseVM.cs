@@ -20,7 +20,7 @@ namespace bitLab.ViewModel
 
     protected void Invoke(Action target)
     {
-      if (mDispatcher == null)
+      if (mDispatcher == null || mDispatcher.CheckAccess())
         target();
       else
         mDispatcher.Invoke(target);
@@ -28,7 +28,7 @@ namespace bitLab.ViewModel
 
     protected void BeginInvoke(Action target)
     {
-      if (mDispatcher == null)
+      if (mDispatcher == null || mDispatcher.CheckAccess())
         target();
       else
         mDispatcher.BeginInvoke(target);
