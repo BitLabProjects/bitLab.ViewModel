@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CBaseVM.cs" />
+    <Compile Include="CColor.cs" />
     <Compile Include="CColorConverter.cs" />
+    <Compile Include="CColors.cs" />
     <Compile Include="CDelegateCommand.cs" />
     <Compile Include="CItemSelectionChangedEventArgs.cs" />
     <Compile Include="Console\CConsoleLineVM.cs" />
@@ -55,10 +57,6 @@
     <ProjectReference Include="..\bitLab.Log\bitLab.Log.csproj">
       <Project>{a25dc3f3-71df-4145-93e3-a7c5eca652b1}</Project>
       <Name>bitLab.Log</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\bitLab.Math\bitLab.Math.csproj">
-      <Project>{97412ef3-deef-41da-a332-f3920fa41860}</Project>
-      <Name>bitLab.Math</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

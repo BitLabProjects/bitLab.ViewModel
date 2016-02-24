@@ -1,11 +1,10 @@
-﻿using bitLab.Math;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShrimpCadVM.Console
+namespace bitLab.ViewModel
 {
   public class CConsoleLineVM
   {

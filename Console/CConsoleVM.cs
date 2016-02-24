@@ -1,22 +1,16 @@
-﻿using bitLab.Math;
-using bitLab.Log;
-using bitLab.ViewModel;
-using System;
-using System.Collections.Generic;
+﻿using bitLab.Log;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ShrimpCadVM.Console
+namespace bitLab.ViewModel
 {
   public class CConsoleVM: CBaseVM, ILogListener
   {
     public CConsoleVM()
     {
       Lines = new ObservableCollection<CConsoleLineVM>();
-      Log.Register(this);
+      Logger.Register(this);
     }
 
     public ObservableCollection<CConsoleLineVM> Lines { get; private set; }
