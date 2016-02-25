@@ -1,4 +1,5 @@
-﻿using bitLab.Log;
+﻿using System;
+using bitLab.Log;
 using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
@@ -7,13 +8,36 @@ namespace bitLab.ViewModel
 {
   public class CConsoleVM: CBaseVM, ILogListener
   {
+    public event EventHandler<string> ExecuteCommand;
+
     public CConsoleVM()
     {
       Lines = new ObservableCollection<CConsoleLineVM>();
+      ExecuteCommandCommand = new CDelegateCommand(mExecuteCommandCommand);
       Logger.Register(this);
     }
 
     public ObservableCollection<CConsoleLineVM> Lines { get; private set; }
+    public CDelegateCommand ExecuteCommandCommand { get; private set; }
+    private void mExecuteCommandCommand(object arg)
+    {
+      var textToUse = mText;
+      Text = null;
+      if (ExecuteCommand != null)
+        ExecuteCommand(this, textToUse);
+    }
+    private string mText;
+    public string Text
+    {
+      get
+      {
+        return mText;
+      }
+      set
+      {
+        SetAndNotify(ref mText, value);
+      }
+    }
 
     public void LogMessage(LogMessage message)
     {
