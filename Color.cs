@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace bitLab.ViewModel
 {
-  public class CColor
+  public class Color
   {
     public byte R, G, B;
 
-    public CColor()
+    public Color()
     {
       R = G = B = 0;
     }
 
-    public CColor(byte r, byte g, byte b)
+    public Color(byte r, byte g, byte b)
     {
       R = r;
       G = g;
@@ -27,29 +27,29 @@ namespace bitLab.ViewModel
       return System.Math.Max(System.Math.Max(R, G), B);
     }
 
-    public CColor SetValue(byte value)
+    public Color SetValue(byte value)
     {
       var increment = value - GetValue();
       return AddAll(increment);
     }
 
-    public CColor GetOpposite()
+    public Color GetOpposite()
     {
-      return new CColor((byte)(255 - R), 
+      return new Color((byte)(255 - R), 
                         (byte)(255 - G), 
                         (byte)(255 - B));
     }
 
-    public static CColor operator ^(CColor c1, CColor c2)
+    public static Color operator ^(Color c1, Color c2)
     {
-      return new CColor((byte)(c1.R ^ c2.R),
+      return new Color((byte)(c1.R ^ c2.R),
                         (byte)(c1.G ^ c2.G),
                         (byte)(c1.B ^ c2.B));
     }
 
-    public CColor AddAll(int value)
+    public Color AddAll(int value)
     {
-      return new CColor((byte)System.Math.Max(0, System.Math.Min(255, R + value)),
+      return new Color((byte)System.Math.Max(0, System.Math.Min(255, R + value)),
                         (byte)System.Math.Max(0, System.Math.Min(255, G + value)),
                         (byte)System.Math.Max(0, System.Math.Min(255, B + value)));
     }

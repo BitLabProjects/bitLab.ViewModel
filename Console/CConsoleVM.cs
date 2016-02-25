@@ -3,6 +3,7 @@ using bitLab.Log;
 using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace bitLab.ViewModel
 {
@@ -12,12 +13,14 @@ namespace bitLab.ViewModel
 
     public CConsoleVM()
     {
-      Lines = new ObservableCollection<CConsoleLineVM>();
+      Lines = new ObservableCollection<LogMessage>();
       ExecuteCommandCommand = new CDelegateCommand(mExecuteCommandCommand);
+
       Logger.Register(this);
     }
 
-    public ObservableCollection<CConsoleLineVM> Lines { get; private set; }
+    public ObservableCollection<LogMessage> Lines { get; private set; }
+
     public CDelegateCommand ExecuteCommandCommand { get; private set; }
     private void mExecuteCommandCommand(object arg)
     {
@@ -26,6 +29,7 @@ namespace bitLab.ViewModel
       if (ExecuteCommand != null)
         ExecuteCommand(this, textToUse);
     }
+
     private string mText;
     public string Text
     {
@@ -39,18 +43,18 @@ namespace bitLab.ViewModel
       }
     }
 
-    public void LogMessage(LogMessage message)
+    void ILogListener.LogMessage(LogMessage message)
     {
-      AddConsoleLine(new CConsoleLineVM(message.Message, CColors.Orange));
+      AddConsoleLine(message);
     }
 
-    private void AddConsoleLine(CConsoleLineVM line)
+    private void AddConsoleLine(LogMessage line)
     {
       Invoke(() => Lines.Add(line));
-      RemoveLineWithDelay(line, 5000);
+      //RemoveLineWithDelay(line, 5000);
     }
 
-    private void RemoveLineWithDelay(CConsoleLineVM line, int delayMillisec)
+    private void RemoveLineWithDelay(LogMessage line, int delayMillisec)
     {
       Task.Factory.StartNew(() =>
       {

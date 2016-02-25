@@ -42,12 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CBaseVM.cs" />
-    <Compile Include="CColor.cs" />
-    <Compile Include="CColorConverter.cs" />
-    <Compile Include="CColors.cs" />
+    <Compile Include="Color.cs" />
+    <Compile Include="Colors.cs" />
     <Compile Include="CDelegateCommand.cs" />
     <Compile Include="CItemSelectionChangedEventArgs.cs" />
-    <Compile Include="Console\CConsoleLineVM.cs" />
     <Compile Include="Console\CConsoleVM.cs" />
     <Compile Include="CSelectionVM.cs" />
     <Compile Include="ISelectable.cs" />
